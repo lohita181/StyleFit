@@ -5,8 +5,8 @@ It combines machine learning classification with a simple web interface to provi
 
 Features
 
-* Upload images of **tops and bottoms**
-* Classifies clothing items into **occasion categories**
+* Upload images of tops and bottoms
+* Classifies clothing items into occasion categories
 * Suggests compatible outfits automatically
 * User-friendly web interface
 * ML models optimized for efficiency
@@ -14,8 +14,8 @@ Features
 How It Works
 
 1. User uploads images of clothing items.
-2. ML models classify each item into an **occasion type**.
-3. Based on predicted occasions, **matching outfit pairs** are recommended.
+2. ML models classify each item into an occasion type.
+3. Based on predicted occasions, matching outfit pairs are recommended.
 4. Results are displayed in the web application.
 
 Tech Stack
