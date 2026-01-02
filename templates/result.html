@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wardrobe Styling Results</title>
+    <link rel="stylesheet" href="../static/css/result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>My Wardrobe</h1>
+    <img src="../static/images/logo.png" alt="logo" class="logo">
+    <div class="container">
+        <p class="topic">Your wardrobe, our styling</p>
+
+        <!-- Matched outfits -->
+        {% if matched_outfits %}
+            <div class="outfits">
+                {% for top_img, bottom_img in matched_outfits %}
+                    <div class="outfit-pair">
+                        <img src="{{ '/' + top_img }}" alt="Top Image" class="outfit-img">
+
+                        <img src="{{ '/' + bottom_img }}" alt="Bottom Image" class="outfit-img">
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">😕 No matching outfits found for "{{ occasion }}"</p>
+        {% endif %}
+    </div>
+</body>
+</html>

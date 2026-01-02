@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wardrobe</title>
+    <link rel="stylesheet" href="../static/css/topupload.css">
+    <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <header>         
+            <h1>My Wardrobe</h1>
+        </header>
+    </div>
+    <div class="container">
+        <p>Choose what's in your wardrobe</p>
+        <main>
+            <section class="wardrobe-section">
+                <h2>TOPS</h2>
+                <form action="/topupload" method="POST" enctype="multipart/form-data">
+                    <div class="upload-box">
+                        <label for="top-upload" class="upload-label">
+                            <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload Icon" class="upload-icon">
+                        </label>
+                        <input type="file" name="top-upload" id="top-upload" accept="image/*" hidden multiple onchange="previewImages()">
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="next-button">Upload</button>
+                        <a href="{{ url_for('upload_bottom') }}" class="next-button">Next</a>
+                    </div>
+                </form>
+
+            </section>
+            <div id="image-previews" class="uploaded-previews" style="display: none;">
+                <h3>Selected Tops:</h3>
+                <div class="image-grid" id="preview-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function previewImages() {
+            const fileInput = document.getElementById('top-upload');
+            const previewContainer = document.getElementById('preview-container');
+            const imagePreviews = document.getElementById('image-previews');
+            
+            // Clear previous previews
+            previewContainer.innerHTML = '';
+
+            // Check if files were selected
+            if (fileInput.files.length > 0) {
+                // Loop through each file
+                for (let file of fileInput.files) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = e.target.result;
+                        imgElement.alt = 'Selected Top';
+                        imgElement.classList.add('preview-img');
+                        previewContainer.appendChild(imgElement);
+                    };
+                    reader.readAsDataURL(file); // Convert file to data URL
+                }
+
+                // Show the preview container
+                imagePreviews.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
