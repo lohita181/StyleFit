@@ -1,7 +1,7 @@
-StyleFit – Fashion Recommendation System
+StyleFit – Personalized Outfit Recommendation System
 
-StyleFit is a fashion recommendation system that suggests **suitable outfit combinations** based on the **occasion** by analyzing uploaded **top and bottom clothing images**.
-It combines **machine learning classification** with a simple web interface to provide practical outfit recommendations.
+StyleFit is a fashion recommendation system that suggests suitable outfit combinations based on the occasion by analyzing uploaded top and bottom clothing images.
+It combines machine learning classification with a simple web interface to provide practical outfit recommendations.
 
 Features
 
