@@ -1,0 +1,52 @@
+StyleFit – Personalized Outfit Recommendation System
+
+StyleFit is a fashion recommendation system that suggests suitable outfit combinations based on the occasion by analyzing uploaded top and bottom clothing images.
+It combines machine learning classification with a simple web interface to provide practical outfit recommendations.
+
+Features
+
+Upload images of tops and bottoms
+
+Classifies clothing items into occasion categories
+
+Suggests compatible outfits automatically
+
+User-friendly web interface
+
+ML models optimized for efficiency
+
+🧠 How It Works
+
+User uploads images of clothing items.
+
+ML models classify each item into an occasion type.
+
+Based on predicted occasions, matching outfit pairs are recommended.
+
+Results are displayed in the web application.
+
+🛠️ Tech Stack
+
+Python
+
+Flask – Web framework
+
+TensorFlow / Keras
+
+MobileNetV2 – Image classification
+
+HTML, CSS, JavaScript
+
+JSON – Mapping outfit recommendations
+
+
+Installation & Setup
+git clone https://github.com/lohita181/StyleFit.git
+cd StyleFit
+pip install -r requirements.txt
+python app.py
+
+
+Open in browser:
+
+http://127.0.0.1:5000/
