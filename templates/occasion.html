@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wardrobe</title>
+    <link rel="stylesheet" href="../static/css/occasion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="logo">
+                <img src="../static/images/logo.png" alt="Logo">
+                <header>         
+                    <h1>My Wardrobe</h1>                   
+                </header>
+            </div>
+    <div class="container">
+        <!-- Header Section -->
+        <p style="margin-left: 100px;">choose the occasion</p>
+
+        <!-- Main Content: Wardrobe Options -->
+        <main>
+            <section class="wardrobe-section">
+                <h2>OCCASION</h2>
+                <div class="image-container">
+                    <div class="flex-container">
+                        <img src="../static/images/adventure_activities.jpg" alt="adventure_activities" class="occasion-image">
+                        <p class="occasion-text">adventure activities</p>
+                    </div>
+                    <div class="flex-container">
+                        <img src="../static/images/business_meeting.jpg" alt="business_meeting" class="occasion-image">
+                        <p class="occasion-text">business meeting</p>
+                    </div>
+                    <div class="flex-container">
+                        <img src="../static/images/graduation_ceremony.jpg" alt="graduation_ceremony" class="occasion-image">
+                        <p class="occasion-text">graduation ceremony</p>
+                    </div>
+                    <div class="flex-container">
+                        <img src="../static/images/summer_vacation.jpg" alt="summer_vacation" class="occasion-image">
+                        <p class="occasion-text">summer vacation</p>
+                    </div>
+                    <div class="flex-container">
+                        <img src="../static/images/birthday_party.jpg" alt="birthday_party" class="occasion-image">
+                        <p class="occasion-text">birthday party</p>
+                    </div>
+                    <div class="flex-container">
+                        <img src="../static/images/workout.jpg" alt="workout" class="occasion-image">
+                        <p class="occasion-text">workout</p>
+                    </div>
+                </div>
+                <form action="{{ url_for('result') }}" method="POST" id="occasion-form">
+                    <input type="hidden" name="selected_occasion" id="selected-occasion">
+                    <button type="submit" class="next-button">Next</button>
+                </form>
+            </section>           
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const occasionBlocks = document.querySelectorAll('.flex-container');
+            const hiddenInput = document.getElementById('selected-occasion');
+    
+            occasionBlocks.forEach(block => {
+                block.addEventListener('click', function () {
+                    // Remove 'selected' class from all blocks
+                    occasionBlocks.forEach(b => b.classList.remove('selected'));
+    
+                    // Add 'selected' class to the clicked one
+                    this.classList.add('selected');
+    
+                    // Get occasion text
+                    const occasionText = this.querySelector('.occasion-text').textContent.trim();
+                    hiddenInput.value = occasionText;
+                    console.log("🟢 Selected Occasion:", occasionText);
+                });
+            });
+        });
+    </script>
+    
+    
+</body>
+</html>
