@@ -1,0 +1,61 @@
+body{
+    background-image: url("images/signinpage.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+h1{
+    text-align: center;
+    margin: 0;
+    font-size: 65px;
+}
+.hend{
+    font-family: 'Slackey', cursive;
+    text-shadow:2px 2px 0 black, -2px -2px 0 black;
+    color: #CF731E;
+    margin-top: 50px;
+}
+span{
+    color: #CCCCCC;
+}
+.container{
+    height: 80%;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signupform{
+    height: 80%;
+    width: 450px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+input{
+    margin-top: 10px;
+    width: 350px;
+    height: 15px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #D9CCBD;
+}
+button{
+    border-radius: 10px;
+    background-color: #CD711D;
+    border: none;
+    height: 30px;
+    width: 80px;
+    font-family: 'Snippet', sans-serif;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 #000;
+    cursor: pointer;
+}

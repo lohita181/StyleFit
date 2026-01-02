@@ -1,0 +1,203 @@
+
+{
+	"Wedding": [
+		{ "Top": "Button-Up Blouses", "Bottom": "Pleated Skirt" },
+		{ "Top": "Wrap Top", "Bottom": "Pencil Skirt" },
+		{ "Top": "Kimono", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Peplum", "Bottom": "Palazzo" },
+		{ "Top": "Kaftans", "Bottom": "A-line Skirt" },
+		{ "Top": "Off Shoulder", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Bandeau", "Bottom": "Pleated Skirt" },
+		{ "Top": "Crop Top", "Bottom": "Pencil Skirt" }
+	],
+	"Modern Wedding": [
+		{ "Top": "Bandeau", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Wrap Blouse", "Bottom": "A-line Skirt" },
+		{ "Top": "Crop Top", "Bottom": "Pencil Skirt" },
+		{ "Top": "Kimono", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Belted Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Peplum", "Bottom": "Wrap Skirt" },
+		{ "Top": "Kaftans", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Flare Jeans" }
+	],
+	"Date Night": [
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Skinny Jeans" },
+		{ "Top": "Crop Top", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Blouse", "Bottom": "Pencil Skirt" },
+		{ "Top": "Wrap Top", "Bottom": "Wrap Skirt" },
+		{ "Top": "Bandeau", "Bottom": "Palazzo" },
+		{ "Top": "Hoodie", "Bottom": "Ripped Jeans" },
+		{ "Top": "Ribbed Top", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Kaftans", "Bottom": "Culottes" }
+	],
+	"Casual Friday at Work": [
+		{ "Top": "Button-up Blouse", "Bottom": "Wide-leg Culottes" },
+		{ "Top": "Hoodie", "Bottom": "Bootcut Jeans" },
+		{ "Top": "T-shirt", "Bottom": "Parallel Pants" },
+		{ "Top": "Kimono", "Bottom": "Pencil Skirt" },
+		{ "Top": "Blouse", "Bottom": "A-line Skirt" },
+		{ "Top": "Longline Top", "Bottom": "Skinny Jeans" },
+		{ "Top": "Wrap Top", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Belted Top", "Bottom": "Cargo Pants" }
+	],
+	"Formal Gala": [
+		{ "Top": "Bandeau", "Bottom": "Pencil Skirt" },
+		{ "Top": "Wrap Top", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Kimono", "Bottom": "Pleated Skirt" },
+		{ "Top": "Kaftans", "Bottom": "A-line Skirt" },
+		{ "Top": "Peplum", "Bottom": "Palazzo" },
+		{ "Top": "Blouses", "Bottom": "Pencil Skirt" },
+		{ "Top": "Longline Top", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Blouse", "Bottom": "Wrap Skirt" }
+	],
+	"Family Reunion": [
+		{ "Top": "T-shirt", "Bottom": "Wide-leg Culottes" },
+		{ "Top": "Blouse", "Bottom": "Pencil Skirt" },
+		{ "Top": "Kimono", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Longline Top", "Bottom": "Culottes" },
+		{ "Top": "Wrap Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Kaftans", "Bottom": "A-line Skirt" },
+		{ "Top": "Peplum", "Bottom": "Palazzo" }
+	],
+	"Birthday Party": [
+		{ "Top": "Crop Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Blouses", "Bottom": "Pencil Skirt" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Kaftans", "Bottom": "Palazzo" },
+		{ "Top": "Hoodie", "Bottom": "Ripped Jeans" },
+		{ "Top": "Ribbed Top", "Bottom": "Wrap Skirt" },
+		{ "Top": "Blouse", "Bottom": "A-line Skirt" },
+		{ "Top": "T-shirt", "Bottom": "Culottes" }
+	],
+	"Anniversary Dinner": [
+		{ "Top": "Wrap Top", "Bottom": "Pencil Skirt" },
+		{ "Top": "Kimono", "Bottom": "Pleated Skirt" },
+		{ "Top": "Peplum", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "A-line Skirt" },
+		{ "Top": "Bandeau", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Blouses", "Bottom": "Wrap Skirt" },
+		{ "Top": "Longline Top", "Bottom": "Palazzo" },
+		{ "Top": "Kaftans", "Bottom": "Wide-leg Culottes" }
+	],
+	"Shopping Day Out": [
+		{ "Top": "T-shirt", "Bottom": "Cargo Shorts" },
+		{ "Top": "Blouse", "Bottom": "Skinny Jeans" },
+		{ "Top": "Hoodie", "Bottom": "Ripped Jeans" },
+		{ "Top": "Button-up Blouse", "Bottom": "Culottes" },
+		{ "Top": "Ribbed Top", "Bottom": "Parallel Pants" },
+		{ "Top": "Crop Top", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Kaftans", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Longline Top", "Bottom": "Track Pants" }
+	],
+	"New Year's Eve Celebration": [
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Skinny Jeans" },
+		{ "Top": "Crop Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Blouses", "Bottom": "Wrap Skirt" },
+		{ "Top": "Bandeau", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Ribbed Top", "Bottom": "Pencil Skirt" },
+		{ "Top": "Peplum", "Bottom": "Palazzo" },
+		{ "Top": "Kaftans", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Longline Top", "Bottom": "Flare Jeans" }
+	],
+	"Cocktail Party": [
+		{ "Top": "Bandeau", "Bottom": "Pencil Skirt" },
+		{ "Top": "Crop Top", "Bottom": "Wrap Skirt" },
+		{ "Top": "Kimono", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Wrap Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Peplum", "Bottom": "A-line Skirt" },
+		{ "Top": "Blouse", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Ribbed Top", "Bottom": "Culottes" }
+	],
+	"Job Interview": [
+		{ "Top": "Button-up Blouse", "Bottom": "Pencil Skirt" },
+		{ "Top": "Blouse", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "T-shirt", "Bottom": "A-line Skirt" },
+		{ "Top": "Kimono", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Wrap Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Longline Top", "Bottom": "Skinny Jeans" },
+		{ "Top": "Belted Top", "Bottom": "Parallel Pants" },
+		{ "Top": "Blouses", "Bottom": "Wide-leg Culottes" }
+	],
+	"Beach Vacation": [
+		{ "Top": "Bandeau", "Bottom": "Cargo Shorts" },
+		{ "Top": "Crop Top", "Bottom": "Drawstring Trousers" },
+		{ "Top": "Kaftans", "Bottom": "Wide-leg Culottes" },
+		{ "Top": "Blouse", "Bottom": "Wrap Skirt" },
+		{ "Top": "T-shirt", "Bottom": "Cargo Shorts" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Palazzo" },
+		{ "Top": "Ribbed Top", "Bottom": "Track Pants" },
+		{ "Top": "Button-up Blouse", "Bottom": "A-line Skirt" }
+	],
+	"Business Conference": [
+		{ "Top": "Button-up Blouse", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Blouse", "Bottom": "Pencil Skirt" },
+		{ "Top": "Kimono", "Bottom": "Parallel Pants" },
+		{ "Top": "Wrap Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Longline Top", "Bottom": "Culottes" },
+		{ "Top": "Belted Top", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Peplum", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Blouses", "Bottom": "Skinny Jeans" }
+	],
+	"Weekend Brunch": [
+		{ "Top": "T-shirt", "Bottom": "Culottes" },
+		{ "Top": "Blouse", "Bottom": "A-line Skirt" },
+		{ "Top": "Kimono", "Bottom": "Wide-leg Culottes" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Palazzo" },
+		{ "Top": "Ribbed Top", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Peplum", "Bottom": "Skinny Jeans" },
+		{ "Top": "Crop Top", "Bottom": "Pleated Skirt" },
+		{ "Top": "Kaftans", "Bottom": "Track Pants" }
+	],
+	"Outdoor Hiking Trip": [
+		{ "Top": "T-shirt", "Bottom": "Cargo Shorts" },
+		{ "Top": "Hoodie", "Bottom": "Track Pants" },
+		{ "Top": "Button-up Blouse", "Bottom": "Drawstring Trousers" },
+		{ "Top": "Ribbed Top", "Bottom": "Cargo Pants" },
+		{ "Top": "Longline Top", "Bottom": "Parallel Pants" },
+		{ "Top": "Kimono", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Crop Top", "Bottom": "Skinny Jeans" },
+		{ "Top": "Blouses", "Bottom": "Ripped Jeans" }
+	],
+	"Baby Shower": [
+		{ "Top": "Blouse", "Bottom": "Pleated Skirt" },
+		{ "Top": "Kaftans", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Kimono", "Bottom": "Paperbag Waist Pants" },
+		{ "Top": "Peplum", "Bottom": "Culottes" },
+		{ "Top": "Off Shoulder Blouse", "Bottom": "A-line Skirt" },
+		{ "Top": "Longline Top", "Bottom": "Wrap Skirt" },
+		{ "Top": "Crop Top", "Bottom": "Pencil Skirt" },
+		{ "Top": "Wrap Top", "Bottom": "Palazzo" }
+	],
+	"Engagement Party": [
+		{ "Top": "Off Shoulder Blouse", "Bottom": "Pleated Skirt" },
+		{ "Top": "Bandeau", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Peplum", "Bottom": "Pencil Skirt" },
+		{ "Top": "Kaftans", "Bottom": "A-line Skirt" },
+		{ "Top": "Blouses", "Bottom": "Wrap Skirt" },
+		{ "Top": "Crop Top", "Bottom": "Palazzo" },
+		{ "Top": "Ribbed Top", "Bottom": "High-waisted Jeans" },
+		{ "Top": "Kimono", "Bottom": "Paperbag Waist Pants" }
+	],
+	"Funeral": [
+		{ "Top": "Blouse", "Bottom": "Pencil Skirt" },
+		{ "Top": "Button-up Blouse", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "T-shirt", "Bottom": "Parallel Pants" },
+		{ "Top": "Longline Top", "Bottom": "Culottes" },
+		{ "Top": "Wrap Top", "Bottom": "A-line Skirt" },
+		{ "Top": "Belted Top", "Bottom": "Skinny Jeans" },
+		{ "Top": "Kimono", "Bottom": "Wide-leg Culottes" },
+		{ "Top": "Blouses", "Bottom": "Paperbag Waist Pants" }
+	],
+	"Movie Night": [
+		{ "Top": "T-shirt", "Bottom": "Cargo Shorts" },
+		{ "Top": "Hoodie", "Bottom": "Ripped Jeans" },
+		{ "Top": "Ribbed Top", "Bottom": "Track Pants" },
+		{ "Top": "Blouse", "Bottom": "Skinny Jeans" },
+		{ "Top": "Button-up Blouse", "Bottom": "Wide-leg Trousers" },
+		{ "Top": "Kaftans", "Bottom": "Culottes" },
+		{ "Top": "Crop Top", "Bottom": "Drawstring Trousers" },
+		{ "Top": "Wrap Top", "Bottom": "Parallel Pants" }
+	]
+}

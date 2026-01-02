@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wardrobe Styling Results</title>
+    <link rel="stylesheet" href="../static/css/result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>My Wardrobe</h1>
+    <img src="images/logo.png" alt="logo" class="logo">
+    <div class="container">
+        <p class="topic">Your wardrobe our styling</p>
+
+        <!-- Styling List Container -->
+        <div id="styling-list"></div>
+    </div>
+
+    <script>
+               const stylingList = JSON.parse(localStorage.getItem("stylingList"));
+
+// Get the container to display the list
+const stylingListContainer = document.getElementById("styling-list");
+
+// Check if the styling list exists
+if (stylingList && stylingList.length > 0) {
+    // Create and append the styling combinations
+    stylingList.forEach(item => {
+        const comboElement = document.createElement("p");
+        comboElement.textContent = `Top: ${item.top}, Bottom: ${item.bottom}`;
+        stylingListContainer.appendChild(comboElement);
+    });
+} else {
+    stylingListContainer.textContent = "No styling combinations available.";
+}
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    background-image: url('images/top.png'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #E8CFB8; 
+    border: 2px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    height: 70%;
+    margin: 0px;
+}
+
+
+header {
+    font-family: 'Snippet', sans-serif;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+}
+
+.logo img {
+
+    border-radius: 50%;
+    margin-bottom: 10px;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+}
+
+h1 {
+    font-size: 36px;
+    font-family: 'Georgia', serif;
+    color: #3d2e1e;
+}
+
+p {
+    font-size: 18px;
+    color: #7a6c5b;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    letter-spacing: 2px;
+    font-family: 'Snippet', sans-serif;
+    color: black;
+}
+h2{
+    margin-bottom: 10px;
+    margin-left: 120px;
+    letter-spacing: 2px;
+    font-family: 'Snippet', sans-serif;
+    color: black;
+}
+
+main {
+    width: 100%;
+    text-align: center;
+}
+
+.wardrobe-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #7a6c5b;
+}
+
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Wardrobe Button Styles */
+.wardrobe-button {
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 4px solid #381E1D;
+    cursor: pointer;
+    font-family: 'Snippet', sans-serif;
+    color: black;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    letter-spacing: 3px;
+}
+
+.orange {
+    background-color: #E4AD5B; 
+}
+
+.pink {
+    background-color: #E9B8B8; 
+}
+
+.wardrobe-button:hover {
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+}
+
+/* Next Button */
+.next-button {
+    background-color: #f07c00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #d76b00;
+}
+.selected{
+    background-color: rgb(37, 186, 39);
+}
