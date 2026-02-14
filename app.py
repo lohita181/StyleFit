@@ -124,8 +124,6 @@ def result():
     print(f"Matched Outfits: {matched_outfits}")  
     return render_template("result.html", occasion=selected_occasion, matched_outfits=matched_outfits)
 <<<<<<< HEAD
-
-=======
 >>>>>>> df31a0420da2290631465e5d2045dbd119fd944c
 if __name__ == "__main__":
     app.run(debug=True)
