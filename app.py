@@ -123,5 +123,6 @@ def result():
                 matched_outfits.append((top_img, bottom_img))
     print(f"Matched Outfits: {matched_outfits}")  
     return render_template("result.html", occasion=selected_occasion, matched_outfits=matched_outfits)
+
 if __name__ == "__main__":
     app.run(debug=True)
