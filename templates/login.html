@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – StyleFit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="hend"><span>STYLE </span>FIT</h1>
+    <div class="container">
+        <form action="/login" method="POST" class="signupform">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <input type="email"    name="email"    required placeholder="Email">
+            <input type="password" name="password" required placeholder="Password">
+            <button type="submit">Login</button>
+            <p class="switch">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+        </form>
+    </div>
+</body>
+</html>

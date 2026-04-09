@@ -1,0 +1,18 @@
+.nav-container {
+    display: flex;
+    gap: 60px;
+    margin: 5px 550px;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.nav-container a {
+    font-family: 'Carter One', cursive;
+    font-size: 1.75rem;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-container a:hover {
+    color: #CD711D;
+}

@@ -25,6 +25,12 @@ body {
     height: 70%;
     margin: 0px;
 }
+.upload-message {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #4caf50;   /* green for success */
+    font-weight: 500;
+}
 
 
 header {

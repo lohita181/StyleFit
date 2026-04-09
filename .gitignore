@@ -1,5 +1,5 @@
-venv/
+.env
 __pycache__/
-*.h5
-*.pt
-*.pth
+*.pyc
+static/uploads/
+venv/

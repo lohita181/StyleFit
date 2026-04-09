@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StyleFit{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Snippet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="nav-container">
+        <a href="{{ url_for('about') }}">Home</a>
+        <a href="{{ url_for('wardrobe') }}">My Wardrobe</a>
+        <a href="{{ url_for('upload_top') }}">Tops</a>
+        <a href="{{ url_for('upload_bottom') }}">Bottoms</a>
+        <a href="{{ url_for('occasion') }}">Occasion</a>
+        <a href="{{ url_for('logout') }}">Sign Out</a>
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>
