@@ -5,125 +5,251 @@ import os
 import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from config import Config
+from models import db, User, WardrobeItem
+from dotenv import load_dotenv
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 
+load_dotenv()
+    
 app = Flask(__name__)
+app.config.from_object(Config)
+db.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
-UPLOAD_FOLDER = os.path.join('static', 'uploads', 'tops')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
+# Create tables if they don't exist
+# with app.app_context():
+#     db.create_all()
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-top_model = tf.keras.models.load_model("models/top_classifier.keras")
-print("Top model loaded successfully")
-bottom_model = tf.keras.models.load_model("models/bottom_classifier.keras")
+# ── Create upload dirs on startup ──────────────────────────────────────────────
+# os.makedirs(app.config['TOP_UPLOAD_FOLDER'],    exist_ok=True)
+# os.makedirs(app.config['BOTTOM_UPLOAD_FOLDER'], exist_ok=True)
 
-with open("models/top_labels.pkl", "rb") as f:
-    top_labels = pickle.load(f)
-with open("models/bottom_labels.pkl", "rb") as f:
-    bottom_labels = pickle.load(f)
-occasion_mapping = {
-    "workout": "sports wear",
-    "adventure activities": "sports wear",
-    "business meeting": "office wear",
-    "graduation ceremony": "office wear",
-    "summer vacation": "summer vacation",
-    "birthday party": "birthday party"
-}
+# ── Load models safely ─────────────────────────────────────────────────────────
+def load_models():
+    try:
+        top_model    = tf.keras.models.load_model(app.config['TOP_MODEL_PATH'])
+        bottom_model = tf.keras.models.load_model(app.config['BOTTOM_MODEL_PATH'])
 
+        with open(app.config['TOP_LABELS_PATH'], 'rb') as f:
+            top_labels = pickle.load(f)
+        with open(app.config['BOTTOM_LABELS_PATH'], 'rb') as f:
+            bottom_labels = pickle.load(f)
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+        print("✅ Models and labels loaded successfully")
+        return top_model, bottom_model, top_labels, bottom_labels
 
+    except Exception as e:
+        print(f"❌ Failed to load models: {e}")
+        raise SystemExit(1)   # stop the app cleanly instead of a cryptic crash
+
+top_model, bottom_model, top_labels, bottom_labels = load_models()
+
+# ── Helpers ────────────────────────────────────────────────────────────────────
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return (
+        '.' in filename and
+        filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+    )
 
+def predict_occasion(img_path, model, labels):
+    img  = image.load_img(img_path, target_size=(224, 224))
+    arr  = image.img_to_array(img)
+    arr  = np.expand_dims(arr, axis=0)
+    arr  = preprocess_input(arr)
+    preds = model.predict(arr)[0]
+    return labels[np.argmax(preds)]
+
+# ── Routes ─────────────────────────────────────────────────────────────────────
 @app.route('/about')
+@login_required
 def about():
     return render_template('about.html')
 
 @app.route('/topupload', methods=['GET', 'POST'])
+@login_required
 def upload_top():
+    message = None
     if request.method == 'POST':
         files = request.files.getlist('top-upload')
-        uploaded_urls = []
+        saved = []
         for file in files:
             if file and allowed_file(file.filename):
-                filename = file.filename
-                save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                folder = Config.user_upload_dir(current_user.id, 'tops')
+                os.makedirs(folder, exist_ok=True)
+                save_path = os.path.join(folder, file.filename)
                 file.save(save_path)
-                uploaded_urls.append(url_for('static', filename=f'uploads/tops/{filename}'))
-        return render_template('topupload.html')
-    return render_template('topupload.html')
 
-@app.route('/upload-success')
-def upload_success():
-    return "File uploaded successfully!"
+                # run inference immediately
+                occasion = predict_occasion(save_path, top_model, top_labels)
+
+                # web-relative path for <img src>
+                web_path = save_path.replace("\\", "/")
+                web_path = web_path[web_path.index("static/"):]
+
+                # save to DB
+                item = WardrobeItem(
+                    user_id  = current_user.id,
+                    filename = file.filename,
+                    filepath = web_path,
+                    type     = 'top',
+                    occasion = occasion
+                )
+                db.session.add(item)
+                saved.append(file.filename)
+
+        db.session.commit()
+        message = f"✅ Uploaded: {', '.join(saved)}" if saved else "⚠️ No valid files uploaded."
+    return render_template('topupload.html', message=message)
+
 
 @app.route('/bottomupload', methods=['GET', 'POST'])
+@login_required
 def upload_bottom():
+    message = None
     if request.method == 'POST':
-        bottom_folder = os.path.join('static', 'uploads', 'bottoms')
-        os.makedirs(bottom_folder, exist_ok=True)
-
         files = request.files.getlist('bottom-upload')
-        uploaded_urls = []
+        saved = []
         for file in files:
             if file and allowed_file(file.filename):
-                filename = file.filename
-                save_path = os.path.join(bottom_folder, filename)
+                folder = Config.user_upload_dir(current_user.id, 'bottoms')
+                os.makedirs(folder, exist_ok=True)
+                save_path = os.path.join(folder, file.filename)
                 file.save(save_path)
-                uploaded_urls.append(url_for('static', filename=f'uploads/bottoms/{filename}'))
 
-        return render_template('bottomupload.html')
-    return render_template('bottomupload.html')
+                occasion = predict_occasion(save_path, bottom_model, bottom_labels)
+
+                web_path = save_path.replace("\\", "/")
+                web_path = web_path[web_path.index("static/"):]
+
+                item = WardrobeItem(
+                    user_id  = current_user.id,
+                    filename = file.filename,
+                    filepath = web_path,
+                    type     = 'bottom',
+                    occasion = occasion
+                )
+                db.session.add(item)
+                saved.append(file.filename)
+
+        db.session.commit()
+        message = f"✅ Uploaded: {', '.join(saved)}" if saved else "⚠️ No valid files uploaded."
+    return render_template('bottomupload.html', message=message)
 
 @app.route('/occasion')
+@login_required
 def occasion():
     return render_template('occasion.html')
 
-def predict_occasion(img_path, model, labels):
-    print("dfd")
-    img = image.load_img(img_path, target_size=(224, 224))
-    arr = image.img_to_array(img)
-    arr = np.expand_dims(arr, axis=0)
-    arr = preprocess_input(arr)
-    predictions = model.predict(arr)[0]
-    predicted_index = np.argmax(predictions)
-    predicted_label = labels[predicted_index]
-    print(f"{img_path} => {predictions}, index: {predicted_index}, label: {predicted_label}")
-    return predicted_label
-
 @app.route('/result', methods=['POST'])
+@login_required
 def result():
-    print(request.form.get("selected_occasion"))
-    selected_occasion = request.form.get("selected_occasion")
-    mapped_occasion = occasion_mapping.get(selected_occasion)
+    selected_occasion = request.form.get('selected_occasion')
+    mapped_occasion   = app.config['OCCASION_MAPPING'].get(selected_occasion)
 
-    top_dir = os.path.join("static", "uploads", "tops")
-    bottom_dir = os.path.join("static", "uploads", "bottoms")
+    tops = WardrobeItem.query.filter_by(
+        user_id  = current_user.id,
+        type     = 'top',
+        occasion = mapped_occasion
+    ).all()
 
-    top_predictions = []
-    for filename in os.listdir(top_dir):
-        if filename.lower().endswith(('jpg', 'jpeg', 'png')):
-            path = os.path.join(top_dir, filename)
-            label = predict_occasion(path, top_model, top_labels)
-            top_predictions.append((path, label))
+    bottoms = WardrobeItem.query.filter_by(
+        user_id  = current_user.id,
+        type     = 'bottom',
+        occasion = mapped_occasion
+    ).all()
 
-    bottom_predictions = []
-    for filename in os.listdir(bottom_dir):
-        if filename.lower().endswith(('jpg', 'jpeg', 'png')):
-            path = os.path.join(bottom_dir, filename)
-            label = predict_occasion(path, bottom_model, bottom_labels)
-            bottom_predictions.append((path, label))
-    print(f"Top model summary:{top_model.summary()}")
-    print(f"bottom model summary:{bottom_model.summary()}")
-    matched_outfits = []
-    for top_img, top_label in top_predictions:
-        for bottom_img, bottom_label in bottom_predictions:
-            if top_label == bottom_label == mapped_occasion:
-                matched_outfits.append((top_img, bottom_img))
-    print(f"Matched Outfits: {matched_outfits}")  
-    return render_template("result.html", occasion=selected_occasion, matched_outfits=matched_outfits)
-<<<<<<< HEAD
->>>>>>> df31a0420da2290631465e5d2045dbd119fd944c
-if __name__ == "__main__":
+    matched_outfits = [
+        (top.filepath, bottom.filepath)
+        for top in tops
+        for bottom in bottoms
+    ]
+
+    return render_template('result.html', occasion=selected_occasion, matched_outfits=matched_outfits)
+
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        email    = request.form.get('email').strip().lower()
+        password = request.form.get('password')
+
+        if User.query.filter_by(email=email).first():
+            return render_template('register.html', error='Email already registered.')
+
+        hashed = generate_password_hash(password)
+        user   = User(email=email, password=hashed)
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for('about'))
+
+    return render_template('register.html', error=None)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email    = request.form.get('email').strip().lower()
+        password = request.form.get('password')
+        user     = User.query.filter_by(email=email).first()
+
+        if not user or not check_password_hash(user.password, password):
+            return render_template('login.html', error='Invalid email or password.')
+
+        login_user(user)
+        return redirect(url_for('about'))
+
+    return render_template('login.html', error=None)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+@app.route('/wardrobe')
+@login_required
+def wardrobe():
+    tops = WardrobeItem.query.filter_by(
+        user_id = current_user.id,
+        type    = 'top'
+    ).order_by(WardrobeItem.created_at.desc()).all()
+
+    bottoms = WardrobeItem.query.filter_by(
+        user_id = current_user.id,
+        type    = 'bottom'
+    ).order_by(WardrobeItem.created_at.desc()).all()
+
+    return render_template('wardrobe.html', tops=tops, bottoms=bottoms)
+
+
+@app.route('/delete/<int:item_id>', methods=['POST'])
+@login_required
+def delete_item(item_id):
+    item = WardrobeItem.query.get_or_404(item_id)
+
+    # make sure users can only delete their own items
+    if item.user_id != current_user.id:
+        return 'Unauthorized', 403
+
+    # delete file from disk
+    full_path = os.path.join(BASE_DIR, item.filepath)
+    if os.path.exists(full_path):
+        os.remove(full_path)
+
+    db.session.delete(item)
+    db.session.commit()
+    return redirect(url_for('wardrobe'))
+
+if __name__ == '__main__':
     app.run(debug=True)
