@@ -25,8 +25,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 # Create tables if they don't exist
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 # ── Create upload dirs on startup ──────────────────────────────────────────────
 # os.makedirs(app.config['TOP_UPLOAD_FOLDER'],    exist_ok=True)
